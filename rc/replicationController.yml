@@ -1,0 +1,18 @@
+apiVersion: v1
+kind : ReplicationController
+metadata:
+  name: rc-demo
+spec:
+  replicas: 3
+  selector:
+    app: demo-server-v1
+  template: 
+    metadata:
+      labels:
+        app: demo-server-v1
+    spec:
+      containers:
+        - name: demo-server
+          image: jacksontmm/demo-server:v1
+          ports:
+            - containerPort: 8080

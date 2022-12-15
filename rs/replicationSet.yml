@@ -1,0 +1,24 @@
+apiVersion: apps/v1beta2
+kind: ReplicationSet # Not recommand to create this type of controller directly, using deplyment instead
+metadata:
+  name: replication_set_demo
+spece:
+  replicas: 3
+  selector:
+    matchLabels:
+      env: dev # env = dev
+    matchExpressions:
+      - {key: env, operation: IN, values: [dev]} #env must be dev
+      - {key: env, operation: NotIn, values: [prod]} #env must not be prod
+  template:
+    matadata:
+      labels:
+        app: demo-server
+        env: dev
+        version: v1
+    spec:
+      containers:
+        - name : demo-server-pod
+          image: jacksontmm/demo-server:v1
+          ports:
+            - containerPort: 8080

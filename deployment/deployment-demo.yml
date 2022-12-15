@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: deploy-demo-server
+  template:
+    metadata:
+      labels:
+        app: deploy-demo-server
+    spec:
+      containers:
+      - name: demo-server-deploy
+        image: jacksontmm/demo-server:v1
+        ports:
+          - containerPort: 8080

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-label-pod
+  labels:
+    app: demo-server-v3
+    tier: backend
+  annotations: # more information about this pod and useless
+    version: latest
+    release_data: 2022/12/15
+    contact: jackson@admi.com
+spec:
+  containers:
+    - name: demo-server-container
+      image: jacksontmm/demo-server:v3
+      ports:
+        - containerPort: 8080
+  nodeSelector: # deploy the node to a specific node
+    nodeTab: high-cpu # if there is no any node with label -> will faile to deploy
+
+

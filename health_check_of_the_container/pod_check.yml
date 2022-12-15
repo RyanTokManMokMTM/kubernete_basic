@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: check-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demo-server
+  template:
+    metadata:
+      name: health-check-pod
+      labels:
+        app: demo-server
+    spec:
+      containers:
+        - name: demo-server
+          image: jacksontmm/demo-server:v3
+          ports:
+            - name: server-port
+              containerPort: 8080
+          livenessProbe:         # we can run a comment ,HTTPGET ....
+            httpGet: # http://localhost:8080/ping
+              path: /ping
+              port: server-port
+            initialDelaySeconds: 15 # delay time before sending the request for giving the inital time to the pod
+            periodSeconds: 15 # a period time to send the request
+            timeoutSeconds: 30 # response time out
+            successThreshold: 1 # time to be succeed
+            failureThreshold: 3 # time to be failed

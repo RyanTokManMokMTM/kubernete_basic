@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-server-deploy
+spec:
+  type: NodePort
+  ports:
+    - port: 8080 # which service Port : target IP
+      nodePort: 32000 #whihc node object : target IP
+      protocol: TCP
+      targetPort: 8080
+  selector: #which pod with label
+      app: deploy-demo-server
