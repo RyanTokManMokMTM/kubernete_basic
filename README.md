@@ -1,4 +1,4 @@
-## kubernets playground
+## kubernetes playground
 Items:
 * Node - minikube
 * Pod
