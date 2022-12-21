@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-server-v3
+  labels:
+    app: webserver
+    tier: backend
+spec:
+  containers:
+    - name: web-server
+      image: jacksontmm/demo-server:v6
+      ports:
+        - name: pod-port
+          containerPort: 8080

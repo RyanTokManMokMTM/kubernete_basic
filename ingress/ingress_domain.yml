@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: domain-ingress
+spec:
+  rules:
+    - host: example1.com # for this domain will direct to example-v1
+      http:      
+        paths:
+          - path: /
+            pathType: Exact
+            backend:
+              service:
+                name: example-v1
+                port:
+                  number: 8080
+
+    - host: example2.com # for this domain will direct to example-v2
+      http:
+        paths:
+          - path: /
+            pathType: Exact
+            backend:
+              service:
+                name: example-v2
+                port:
+                  number: 8080

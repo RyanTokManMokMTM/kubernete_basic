@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aws-deployment
+spec:
+  selector:
+    matchLabels:
+      app: webserver-deployment
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: webserver-deployment
+    spec:
+      containers:
+        - name: web-server
+          image: jacksontmm/demo-server:v3
+          ports:
+            - name: web-port
+              containerPort: 8080
