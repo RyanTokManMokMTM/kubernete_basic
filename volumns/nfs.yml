@@ -1,0 +1,19 @@
+# we can also amount to netword file system(own FS)
+apiServer: v1
+kind: Pod
+metadata:
+  name: demo-server
+spec:
+  containers:
+    - name: apiserver
+      image: jacksontmm/demo-server:v1
+      ports:
+        - containerPort: 8080
+      volumeMounts:
+        - name: nfs-volume
+          mountPath: /tmp
+  volumes:
+    - name: nfs-volume
+      nfs:
+        server: {URL}
+        path: /

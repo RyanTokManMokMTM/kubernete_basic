@@ -1,0 +1,13 @@
+# Declaring the standard-storage object - StorageClass
+# Who is the provider, who to do when the pod is disappered, the spec of the storage...etc
+# read more: https://kubernetes.io/docs/concepts/storage/storage-classes/#mount-options
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: standard
+provisioner: kubernetes.io/aws-ebc # who is the proviser of the storage we are going to use
+parameters: # the sepc of the storage
+  type: gp2 #aws-ebc storage type
+  zone: ap-southeast-1a # storage location must be as same as EC2 Instandc
+reclaimPolicy: Delete #Default : Retain - same beharviour of declaring Volumn inside pod configuration
+

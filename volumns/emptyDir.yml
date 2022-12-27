@@ -1,0 +1,22 @@
+# The life cycle of emptyDir is same as the pod, it used for storing templdate data that generate from containers in that pod.
+# If the pod is dead, the emptyDir volumn will gone.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-server
+  labels:
+    app: web-server
+sepc:
+  containers:
+  - name: apiServer
+    image: jacksontmm/demo-server:v1
+    ports:
+    - containersPort: 8080
+      volumnMounts:
+      - name: cache
+        mountPath: /app
+    volumn:
+      - name: cache
+        emptyDir: {}
+

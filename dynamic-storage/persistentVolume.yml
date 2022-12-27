@@ -1,0 +1,13 @@
+# Creating resources base on the StorageClass
+
+apiVersion: v1
+metadata:
+  name: persistance-claim
+spec:
+  accessMode:
+    # there are 3 types : ReadWriteOnce - allow to amount with 1 node,ReadOnlyMany - Read by many node, ReadWriteMany - Write by many node
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi
+  storageClassName: standard # the name of the standard storage class we cae going to use 

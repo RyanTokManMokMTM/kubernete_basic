@@ -4,7 +4,7 @@ metadata:
   name: web-server-v2
   labels:
     app: webserver
-    tire: backend
+    tier: backend
 spec:
   containers:
     - name: web-server

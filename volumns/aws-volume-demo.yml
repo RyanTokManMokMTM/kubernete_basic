@@ -1,0 +1,18 @@
+# amont aws-volume in ec2(aws volume can only amount to ec2 instace) node
+apiVersion: v1
+kind: Pod
+metadata: 
+   name: demo-server
+spec:
+  containers:
+  - name: api-server
+    image: jacksontmm/demo-server:v7
+    ports:
+      - containerPort: 8080
+    volumeMounts:
+      - name: aws-ebs-volumes
+        mountPath: /app/tmp
+  volumes:
+  - name: aws-ebs-volumes
+    awsElasticBlockStore:
+        volumeID: vol-0cd0ca2e0b7d2ad3b

@@ -1,0 +1,20 @@
+# The life cycle of the host path is same as the node that the pod is running on.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-server
+spec:
+  containers:
+  - name: api-server
+    image: jacksontmm/demo-server:v7
+    ports:
+    - containerPort: 8080
+    volumeMounts:
+    - name: demo-cache
+      mountPath: /app/tmp
+  volumes:
+  - name: demo-cache
+    hostPath:
+      path: /tmp
+      type: Directory
+
